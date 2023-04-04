@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+:root {
+    --bg: rgb(32, 32, 32);
+    --bg_focus: rgb(49, 49, 49);
+    --ac: rgb(255, 0, 119);
+}
+::-webkit-scrollbar {
+    width: 10px;
+}  
+html {
+    background-color: var(--bg_focus);
+    color: white;
+}
+.sideBar {
+    background-color: var(--bg_focus);
+    height: 100%;
+    width: 19%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    z-index: 101;
+    box-shadow: 0px 0px 10px black;
+
+}
+.sideBar_top {
+    background-color: var(--bg);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    padding: 5px;
+    border-bottom: 1px solid var(--ac);
+    border-image: radial-gradient(var(--ac) 60%, #00000000) 1;
+
+}
+.sideBar_button {
+    background-color: transparent;
+    width: 100%;
+    border: 0px solid;
+    color: white;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    padding: 5px;
+    transition: 0.2s;
+    border-left: 1px solid transparent;
+
+}
+.sideBar_icon {
+    width: 16px; 
+    padding-right: 15px; 
+    vertical-align: middle;
+}
+.sideBar_button:hover {
+    background-color: var(--bg);
+}
+.sideBar_buttonSelected {
+    border-left: 1px solid var(--ac);
+}
+#sideBar_tabs {
+    padding: 7px;
+    margin-top: 7px;
+}
+.bottomBar {
+    background-color: var(--bg_focus);
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    width: 79%;
+    height: 20%;
+    z-index: 100;
+    box-shadow: 0px 0px 10px black;
+}
+.bottomBar_top {
+    background-color: var(--bg);
+    padding: 7px;
+}
+.bottomBar_bottom {
+    padding: 5px;
+    
+}
+.bottomBar_button {
+    border: 1px solid transparent;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    padding: 5px;
+    background-color: transparent;
+    transition: 0.2s;
+}
+.bottomBar_button:hover {
+    background-color: var(--bg_focus);
+}
+.bottomBar_buttonSelected {
+    border-bottom: 1px solid var(--ac);
+}
+#console_holder {
+    overflow:overlay;
+    font-family: 'Roboto Mono', monospace;
+    height: 13vh;
+    text-shadow: 0px 0px 20px var(--ac);
+}
+.page {
+    background-color: var(--bg_focus);
+    top: 0;
+    right: 0;
+    width: 79%;
+    height: 80%;
+    position: fixed;
+    z-index: 99;
+
+}
+.skillBar {
+    background-color: var(--bg);
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px;
+    width: 97%;
+}
+.halfBox {
+    vertical-align: middle;
+    display: inline-block;
+    background-color: var(--bg);
+    width: 40%;
+    margin-left: 6%;
+    margin-top: 100px;
+    box-shadow: 0px 0px 10px black;
+    background-color: var(--bg_focus);
+}
+.halfBox_top {
+    background-color: var(--bg);
+    padding: 7px;
+    font-family: 'Poppins', sans-serif;
+}
+.popUp {
+    vertical-align: middle;
+    display: inline-block;
+    background-color: var(--bg);
+    width: 40%;
+    margin-left: 40%;
+    margin-top: 100px;
+    box-shadow: 0px 0px 10px black;
+    background-color: var(--bg_focus);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+.popUp_top {
+    background-color: var(--bg);
+    padding: 7px;
+    font-family: 'Poppins', sans-serif;
+}
+.popUp_bottom {
+    padding: 7px;
+    text-align: center;
+}
+.popUp_button {
+
+}
+.eightyBox {
+    vertical-align: middle;
+    display: inline-block;
+    background-color: var(--bg);
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 100px;
+    box-shadow: 0px 0px 10px black;
+    background-color: var(--bg_focus);
+
+}
+.eightyBox_top {
+    background-color: var(--bg);
+    padding: 7px;
+    font-family: 'Poppins', sans-serif;
+
+}
+.eightyBox_bottom {
+    padding: 7px;
+}
+.halfBox_bottom {
+    padding: 7px;
+}
+.skillText_1 {
+    margin: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+}
+.skillText_2 {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    white-space: pre-line;
+}
+.skillButton_1 {
+    width: 60%;
+    margin-left: 20%;
+    background-color: transparent;
+    border: 0px solid transparent;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px;
+    transition: 0.2s;
+    padding: 5px;
+}
+.skillButton_1:hover {
+    background-color: var(--bg);
+}
+
+.skillButton_1Active {
+    border-bottom: 1px solid var(--ac);
+
+}
+.skillIcon_1 {
+    width: 24px; 
+    padding-right: 5px; 
+    vertical-align: middle;
+
+}
+.inventoryItem {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    border-left: 1px solid var(--ac);
+    padding-left: 5px;
+    margin-bottom: 5px;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  
+}
+.ac_color {
+    color: var(--ac)
+}
+.moneyHolder {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin-left: 10px;
+}
+.versionText {
+    font-family: 'Poppins', sans-serif;
+    color: var(--ac);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    margin: 5px;
+    text-shadow: 0px 0px 5px var(--ac);
+}

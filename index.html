@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>catRPG.xyz</title>
+</head>
+<body>
+<!---<div class="popUp">
+        <div class="popUp_top">
+            info
+        </div>
+        <div class="popUp_bottom">
+            test
+        </div>
+
+    </div>-->    
+
+
+    <div class="sideBar">
+        <div class="sideBar_top">
+            <span style="color: var(--ac)">c</span>atRPG
+            <br>
+            <marquee width="100%" direction="left"  scrollamount="2" style="font-size: 16px;" id="motd">
+                
+            </marquee>
+                
+        </div>
+        <p class="moneyHolder">$<span id="moneyHolder"></span></p>
+        <div id="sideBar_tabs">
+        </div>
+        <p class="versionText" id="versionText"></p>
+
+    </div>
+    <div class="bottomBar">
+
+        <div class="bottomBar_top" id="bottomBar_tabs">
+
+        </div>
+        
+        <div class="bottomBar_bottom">
+            <section id="bottomBar_page_console">
+                <div id="console_holder">
+
+                </div>
+            </section>
+
+            <section id="bottomBar_page_settings">
+                settings
+            </section>
+
+        </div>
+    </div>
+    <div class="page">
+        <section id="page_home">
+            <div class="halfBox" style="margin-left: 30%;">
+                <div class="halfBox_top">
+                    <img src="assets/home.png" class="skillIcon_1" > welcome
+                </div>
+                <div class="halfBox_bottom">
+                </div>
+            </div>
+        </section>
+        <section id="page_inventory">
+            
+            <div class="eightyBox">
+                <div class="eightyBox_top">
+                    <img src="assets/backpack.png" class="skillIcon_1"> inventory <button onclick="sellButton()" class="inventoryButton">sell</button>
+                </div>
+                <div class="eightyBox_bottom">
+                    <div class="inventoryHolder" id="inventoryHolder">
+                        <div class="inventoryItem">Coal: 4</div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="page_mining">
+            <section id="miningNode_holder">
+
+            <div class="halfBox">
+                <div class="halfBox_top">
+                    <img src="assets/rock.png" class="skillIcon_1"> coal mine
+                </div>
+                <div class="halfBox_bottom">
+                        <p class="skillText_1"></p>
+                        <p class="skillText_2"><span class="ac_color">xp:</span> 3-5</p>
+                        <p class="skillText_2"><span class="ac_color">item:</span> coal</p>
+        
+                        <button class="skillButton_1 skillButton_1Active" onclick="nodeSwitch('mining', 'coal_mine')">mine</button>        
+                </div>
+            </div>
+        </section>
+            
+        </section>
+        <section id="page_smithing">
+            <div id="smithingNode_holder">
+                <div class="halfBox">
+                    <div class="halfBox_top">
+                        <img src="assets/rock.png" class="skillIcon_1"> Copper bar
+                    </div>
+                    <div class="halfBox_bottom">
+                        <button class="skillButton_1 skillButton_1Active" onclick="nodeSwitch('smithing', 'copper_bar')">smith</button>        
+    
+                    </div>
+                </div>
+    
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
+<script src="vars.js"></script>
+<script src="index.js"></script>
