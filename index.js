@@ -75,39 +75,38 @@ function stopNode() {
 }
 
 function nodeSetupInfo(skill) {
-            // info box
-            let node_holder = document.querySelector(`#${skill}Node_holder`)
+    // info box
+    let node_holder = document.querySelector(`#${skill}Node_holder`)
 
-            let node_halfBox = document.createElement("div")
-            let node_halfBoxTop = document.createElement("div")
-            let node_halfBoxBottom = document.createElement("div")
-            let node_halfBoxSpan = document.createElement("span")
-            let node_halfBoxIcon = document.createElement("img")
-            let node_halfBoxText = document.createElement("p")
+    let node_halfBox = document.createElement("div")
+    let node_halfBoxTop = document.createElement("div")
+    let node_halfBoxBottom = document.createElement("div")
+    let node_halfBoxSpan = document.createElement("span")
+    let node_halfBoxIcon = document.createElement("img")
+    let node_halfBoxText = document.createElement("p")
+
+    node_halfBox.className = "halfBox"
+
+    node_halfBoxTop.className = "halfBox_top"
+
+    node_halfBoxBottom.className = "halfBox_bottom"
+
+    node_halfBoxSpan.innerHTML = "info"
     
-            node_halfBox.className = "halfBox"
+    node_halfBoxIcon.src = `assets/info.png`
+    node_halfBoxIcon.className = "skillIcon_1"
+
+    node_halfBoxText.className = "skillText_2"
+    node_halfBoxText.innerHTML = `xp - ${save["skills"][skill]["xp"]} / ${save["skills"][skill]["level"] * game["xp_offset"]}`
+    node_halfBoxTop.appendChild(node_halfBoxIcon)
+    node_halfBoxTop.appendChild(node_halfBoxSpan)
+
+    node_halfBoxBottom.appendChild(node_halfBoxText)
+
+    node_halfBox.appendChild(node_halfBoxTop)
+    node_halfBox.appendChild(node_halfBoxBottom)
     
-            node_halfBoxTop.className = "halfBox_top"
-    
-            node_halfBoxBottom.className = "halfBox_bottom"
-    
-            node_halfBoxSpan.innerHTML = "info"
-            
-            node_halfBoxIcon.src = `assets/info.png`
-            node_halfBoxIcon.className = "skillIcon_1"
-    
-    
-            node_halfBoxText.className = "skillText_2"
-            node_halfBoxText.innerHTML = `xp - ${save["skills"][skill]["xp"]} / ${save["skills"][skill]["level"] * game["xp_offset"]}`
-            node_halfBoxTop.appendChild(node_halfBoxIcon)
-            node_halfBoxTop.appendChild(node_halfBoxSpan)
-    
-            node_halfBoxBottom.appendChild(node_halfBoxText)
-    
-            node_halfBox.appendChild(node_halfBoxTop)
-            node_halfBox.appendChild(node_halfBoxBottom)
-            
-            node_holder.appendChild(node_halfBox)
+    node_holder.appendChild(node_halfBox)
     
     
 }
@@ -116,8 +115,8 @@ function nodeSetup(style, skill) {
     if (style == 1) { // normal resources (click to collect not crafting)
         $(`#${skill}Node_holder`).empty()
         nodeSetupInfo(skill)
-        for (let i = 0; i < Object.getOwnPropertyNames(game["nodes"][skill]).length; i++) {
-            if (save["skills"][skill]["level"] >= game["nodes"][skill][Object.getOwnPropertyNames(game["nodes"][skill])[i]]["level"]) {
+        for (let i = 0; i < Object.getOwnPropertyNames(game["nodes"][skill]).length; i++) { // goes through all the nodes
+            if (save["skills"][skill]["level"] >= game["nodes"][skill][Object.getOwnPropertyNames(game["nodes"][skill])[i]]["level"]) { // if we have enough level to use this node
                 let node_holder = document.querySelector(`#${skill}Node_holder`)
 
                 let node_halfBox = document.createElement("div")
@@ -161,8 +160,8 @@ function nodeSetup(style, skill) {
     if (style == 2) { // for crafting skills
         $(`#${skill}Node_holder`).empty()
         nodeSetupInfo(skill)
-        for (let i = 0; i < Object.getOwnPropertyNames(game["nodes"][skill]).length; i++) {
-            if (save["skills"][skill]["level"] >= game["nodes"][skill][Object.getOwnPropertyNames(game["nodes"][skill])[i]]["level"]) {
+        for (let i = 0; i < Object.getOwnPropertyNames(game["nodes"][skill]).length; i++) { // goes through all the nodes 
+            if (save["skills"][skill]["level"] >= game["nodes"][skill][Object.getOwnPropertyNames(game["nodes"][skill])[i]]["level"]) { // if we have enough level to use this node
                 let node_holder = document.querySelector(`#${skill}Node_holder`)
 
                 let node_halfBox = document.createElement("div")
@@ -221,6 +220,7 @@ function update(updaie) {
     if (updaie == "all" || updaie == "tabs") {
         $("#bottomBar_tabs").empty()
         $("#sideBar_tabs").empty()
+        $("#sideBar_Skilltabs").empty()
         for (let i = 0; i < Object.getOwnPropertyNames(game["bottom_tabs"]).length; i++) {
             let bottomBar_tabs = document.querySelector("#bottomBar_tabs")
 
@@ -240,6 +240,7 @@ function update(updaie) {
 
         for (let i = 0; i < Object.getOwnPropertyNames(game["side_tabs"]).length; i++) {
             let sideBar_tabs = document.querySelector("#sideBar_tabs")
+            let sideBar_Skilltabs = document.querySelector("#sideBar_Skilltabs")
 
             let sideBar_button = document.createElement("button")
 
@@ -261,15 +262,18 @@ function update(updaie) {
                 document.getElementById(`page_${Object.getOwnPropertyNames(game["side_tabs"])[i]}`).style.display = ""
                 sideBar_button.className = "sideBar_button sideBar_buttonSelected"
             }
-            if (Object.getOwnPropertyNames(game["skills"]).includes(Object.getOwnPropertyNames(game["side_tabs"])[i])) { // checks if the tab name is a skill
-                sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i] + " " + save["skills"][Object.getOwnPropertyNames(game["side_tabs"])[i]]["level"] + "/99"
-            } else {
-                sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i]
-            }
-
             sideBar_button.appendChild(sideBar_image)
             sideBar_button.appendChild(sideBar_text)
-            sideBar_tabs.appendChild(sideBar_button)
+
+            if (Object.getOwnPropertyNames(game["skills"]).includes(Object.getOwnPropertyNames(game["side_tabs"])[i])) { // checks if the tab name is a skill
+                sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i] + " " + save["skills"][Object.getOwnPropertyNames(game["side_tabs"])[i]]["level"] + "/99"
+                sideBar_Skilltabs.appendChild(sideBar_button)
+            } else {
+                sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i]
+                sideBar_tabs.appendChild(sideBar_button)
+
+            }
+
 
 
         }
@@ -408,6 +412,7 @@ function sellButton() {
     if (game["active_inventory"] != null && save["inventory"][game["active_inventory"]] >= 1) {
         console.log(save["inventory"][game["active_inventory"]])
         save["money"] += save["inventory"][game["active_inventory"]] * game["items"][game["active_inventory"]]["value"]
+        consoleLog(`Sold $${save["inventory"][game["active_inventory"]] * game["items"][game["active_inventory"]]["value"]}`)
         save["inventory"][game["active_inventory"]] = 0
 
         update('inventory')
@@ -425,7 +430,7 @@ function invClick(name) {
     }
 }
 
-window.setInterval(function() {
+window.setInterval(function() { // stack overflow gaming
     var elem = document.getElementById('console_holder');
     elem.scrollTop = elem.scrollHeight;
 }, 1);

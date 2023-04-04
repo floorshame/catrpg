@@ -24,7 +24,12 @@ save = { // all these variables get saved
         "smithing": {
             "level": 1,
             "xp": 1
+        },
+        "woodcutting": {
+            "level": 1,
+            "xp": 1
         }
+
     },
 
 }
@@ -45,13 +50,16 @@ game = { // all variables that are not saved
         "home": true,
         "inventory": false,
         "mining": false,
-        "smithing": false
+        "smithing": false,
+        "woodcutting": false,
     },
     "side_icons": {
         "home": "home.png",
         "inventory": "backpack.png",
         "mining": "mining.png",
-        "smithing": "bar.png"
+        "smithing": "bar.png",
+        "woodcutting": "axe.png"
+
     },
 
     "skills": {
@@ -60,7 +68,11 @@ game = { // all variables that are not saved
         },
         "smithing": {
 
+        },
+        "woodcutting": {
+
         }
+
     },
 
     "nodes": {

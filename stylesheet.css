@@ -3,7 +3,7 @@
 :root {
     --bg: rgb(32, 32, 32);
     --bg_focus: rgb(49, 49, 49);
-    --ac: rgb(9, 255, 0);
+    --ac: rgb(0, 174, 255);
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -58,9 +58,19 @@ html {
 .sideBar_buttonSelected {
     border-left: 1px solid var(--ac);
 }
-#sideBar_tabs {
+#sideBar_tabs  {
     padding: 7px;
     margin-top: 7px;
+}
+#sideBar_Skilltabs {
+    padding: 7px;
+    margin-top: 7px;
+}
+.sideBar_seperator{
+    color: rgba(255, 255, 255, 0.452);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+
 }
 .bottomBar {
     background-color: var(--bg_focus);
