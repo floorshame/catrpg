@@ -1,6 +1,6 @@
 save = { // all these variables get saved
 
-    "money": 0,
+    "money": 0, // *
 
     "inventory": { // *
         "coal": 1,
@@ -31,6 +31,8 @@ save = { // all these variables get saved
 
 game = { // all variables that are not saved
     "version": "build 1",
+    
+    "xp_offset": 140,
     "active_inventory": null,
     "active_skill": null,
     "active_node": null,
@@ -110,7 +112,7 @@ game = { // all variables that are not saved
                 "name": "Steel cave",
                 "icon": "rock.png",
                 "button_text": "mine",
-                "level": 15,
+                "level": 20,
                 "button_function": function() {nodeSwitch('mining', 'steel_cave')}
             },
 
@@ -152,7 +154,7 @@ game = { // all variables that are not saved
                 },
                 "xp_min": 3,
                 "xp_max": 5,
-                "level": 5,
+                "level": 15,
                 "name": "Gold bar",
                 "icon": "bar.png",
                 "button_text": "smith",
@@ -166,7 +168,7 @@ game = { // all variables that are not saved
                 },
                 "xp_min": 10,
                 "xp_max": 15,
-                "level": 5,
+                "level": 20,
                 "name": "Steel bar",
                 "icon": "bar.png",
                 "button_text": "smith",
