@@ -14,6 +14,11 @@ save = { // all these variables get saved
         "gold_bar": 1,
         "steel_bar": 1,
 
+        "oak_wood": 1,
+        "birch_wood": 1,
+        "spruce_wood": 1,
+        "willow_wood": 1
+
     },
 
     "skills": { // *
@@ -187,6 +192,51 @@ game = { // all variables that are not saved
                 "button_function": function() {nodeSwitch('smithing', 'steel_bar')}
             },
 
+        },
+        "woodcutting": {
+            "oak_trees": {
+                "item": "oak_wood",
+                "xp_min": 3,
+                "xp_max": 5,
+                "name": "Oak trees",
+                "icon": "axe.png",
+                "button_text": "chop",
+                "level": 1,
+                "button_function": function() {nodeSwitch('woodcutting', 'oak_trees')}
+            },
+            "birch_trees": {
+                "item": "birch_wood",
+                "xp_min": 10,
+                "xp_max": 15,
+                "name": "Birch trees",
+                "icon": "axe.png",
+                "button_text": "chop",
+                "level": 5,
+                "button_function": function() {nodeSwitch('woodcutting', 'birch_trees')}
+            },
+            "spruce_trees": {
+                "item": "spruce_wood",
+                "xp_min": 10,
+                "xp_max": 15,
+                "name": "Spruce trees",
+                "icon": "axe.png",
+                "button_text": "chop",
+                "level": 15,
+                "button_function": function() {nodeSwitch('woodcutting', 'spruce_trees')}
+            },
+            "willow_trees": {
+                "item": "willow_wood",
+                "xp_min": 15,
+                "xp_max": 18,
+                "name": "Willow trees",
+                "icon": "axe.png",
+                "button_text": "chop",
+                "level": 15,
+                "button_function": function() {nodeSwitch('woodcutting', 'willow_trees')}
+            },
+
+
+
         }
     },
 
@@ -229,6 +279,25 @@ game = { // all variables that are not saved
             "value": 35,
             "name": "Steel bar"
         },
+        // woodcutting
+        "oak_wood": {
+            "value": 5,
+            "name": "Oak wood"
+        },
+        "birch_wood": {
+            "value": 10,
+            "name": "Birch wood"
+        },
+        "spruce_wood": {
+            "value": 15,
+            "name": "Spruce wood"
+        },
+        "willow_wood": {
+            "value": 20,
+            "name": "Willow wood"
+        },
+
+
 
 
 

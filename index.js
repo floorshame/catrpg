@@ -38,7 +38,7 @@ function checkResources(skill, node) {
 
 function startNode() {
     nodeLoop = setInterval(() => {
-        if (game["active_skill"] == "mining") { // mining
+        if (game["active_skill"] == "mining" || game["active_skill"] == "woodcutting") { // mining
             save["inventory"][game["nodes"][game["active_skill"]][game["active_node"]]["item"]] += 1 // gets the item from the node and adds it to our inventory
             let xp = ran(game["nodes"][game["active_skill"]][game["active_node"]]["xp_min"], game["nodes"][game["active_skill"]][game["active_node"]]["xp_max"])
             save["skills"][game["active_skill"]]["xp"] += xp
@@ -285,6 +285,9 @@ function update(updaie) {
             }
             if (Object.getOwnPropertyNames(game["skills"])[i] == "smithing") {
                 nodeSetup(2, "smithing")
+            }
+            if (Object.getOwnPropertyNames(game["skills"])[i] == "woodcutting") {
+                nodeSetup(1, "woodcutting")
             }
 
         }
