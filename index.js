@@ -22,6 +22,13 @@ function ran(min, max) {
 
 
 }
+function colorpicker(type) {
+    let root = document.querySelector(':root');
+    console.log(document.getElementById(`cp_${type}`).value) // debug
+    save["profile"]["color"] = document.getElementById(`cp_${type}`).value
+    root.style.setProperty(`--${type}`, document.getElementById(`cp_${type}`).value);
+
+}
 
 function checkResources(skill, node) {
     let nodeswitch = true
@@ -57,14 +64,15 @@ function startNode() {
     
                 consoleLog(`+1 ${game["nodes"][game["active_skill"]][game["active_node"]]["item"]}, +${xp} xp`)
                 save["inventory"][game["nodes"][game["active_skill"]][game["active_node"]]["item"]] += 1
+                
             } else {
                 game["active_skill"] = null
                 game["active_node"] = null
                 consoleLog("not enough resources")
-                update("skills")
                 stopNode()
             }
         }
+        update("skills")
         update("xp")
         update("inventory")
     }, 1000);
@@ -331,6 +339,10 @@ function update(updaie) {
         let motd = ran(0, game["motd"].length - 1)
         console.log(motd)
         document.getElementById("motd").innerHTML = game["motd"][motd]
+        let root = document.querySelector(':root');
+        root.style.setProperty(`--ac`, save["profile"]["color"]);
+
+
     }
 }
 
@@ -358,15 +370,19 @@ function tabSwitch(bar, tabName) {
 
 function saveGame() {
     localStorage.setItem("cookiedata", JSON.stringify(save));
-    console.log("Data has been saved") // debug 
+    consoleLog("Data has been saved") // debug 
 }
-
+function resetGame() {
+    localStorage.setItem("cookiedata", JSON.stringify({}));
+    consoleLog("Please reload for the reset to take affect") // debug 
+}
 function loadGame() {
     let cookiedata = JSON.parse(localStorage.getItem("cookiedata"));
         //if (typeof gamedata.currentWeather !== "undefined") gameTDM.currentweather = gamedata.currentWeather;    
     if (localStorage.getItem("cookiedata") != null) {
-        console.log(cookiedata)
+        console.log(cookiedata) // debug
         if (typeof cookiedata["inventory"] == "undefined") { cookiedata["inventory"] = save["inventory"]; console.log("Data missing default setting") } // debug 
+        if (typeof cookiedata["profile"] == "undefined") { cookiedata["profile"] = save["profile"]; console.log("Data missing default setting") } // debug 
         if (typeof cookiedata["skills"] == "undefined") {cookiedata["skills"] = save["skills"]; console.log("Data missing default setting") } // debug 
         if (typeof cookiedata["money"] == "undefined") {cookiedata["money"] = save["money"]; console.log("Data missing default setting") } // debug 
 
@@ -376,6 +392,15 @@ function loadGame() {
                 if (cookiedata["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]] == undefined) {
                     console.log("Data missing default setting") // debug
                     cookiedata["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]] = save["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]]
+                }
+            }
+        }
+
+        if (typeof cookiedata["profile"] != "undefined") {
+            for (let i = 0; i < Object.getOwnPropertyNames(save["profile"]).length; i++) {
+                if (cookiedata["profile"][Object.getOwnPropertyNames(save["profile"])[i]] == undefined) {
+                    console.log("Data missing default setting") // debug
+                    cookiedata["profile"][Object.getOwnPropertyNames(save["profile"])[i]] = save["profile"][Object.getOwnPropertyNames(save["profile"])[i]]
                 }
             }
         }

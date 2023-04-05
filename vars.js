@@ -3,21 +3,21 @@ save = { // all these variables get saved
     "money": 0, // *
 
     "inventory": { // *
-        "coal": 1,
-        "copper_ore": 2,
-        "iron_ore": 1,
-        "gold_ore": 1,
-        "steel_ore": 1,
+        "coal": 0,
+        "copper_ore": 0,
+        "iron_ore": 0,
+        "gold_ore": 0,
+        "steel_ore": 0,
 
-        "copper_bar": 1,
-        "iron_bar": 1,
-        "gold_bar": 1,
-        "steel_bar": 1,
+        "copper_bar": 0,
+        "iron_bar": 0,
+        "gold_bar": 0,
+        "steel_bar": 0,
 
-        "oak_wood": 1,
-        "birch_wood": 1,
-        "spruce_wood": 1,
-        "willow_wood": 1
+        "oak_wood": 0,
+        "birch_wood": 0,
+        "spruce_wood": 0,
+        "willow_wood": 0
 
     },
 
@@ -37,10 +37,13 @@ save = { // all these variables get saved
 
     },
 
+    "profile": {
+        "color": "#00aeff"
+    }
 }
 
 game = { // all variables that are not saved
-    "version": "build 1.2",
+    "version": "build 1.3",
     
     "xp_offset": 140,
     "active_inventory": null,

@@ -54,7 +54,15 @@
             </section>
 
             <section id="bottomBar_page_settings">
-                settings
+                <p class="settingsSeperator">customization</p>
+                <br>
+                <input type="color" id="cp_ac" onchange="colorpicker('ac')">
+                <br>
+                <p class="settingsSeperator">data</p>
+                <center>
+                    <button class="settingsButton" onclick="saveGame()" style="width: 45%">save</button>
+                    <button class="settingsButton" onclick="resetGame()" style="width: 45%">reset</button>
+                </center>
             </section>
 
         </div>

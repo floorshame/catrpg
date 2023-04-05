@@ -3,7 +3,7 @@
 :root {
     --bg: rgb(32, 32, 32);
     --bg_focus: rgb(49, 49, 49);
-    --ac: rgb(0, 174, 255);
+    --ac: #00aeff;
 }
 ::-webkit-scrollbar {
     width: 10px;
@@ -88,7 +88,6 @@ html {
 }
 .bottomBar_bottom {
     padding: 5px;
-    
 }
 .bottomBar_button {
     border: 1px solid transparent;
@@ -255,4 +254,30 @@ html {
     position: fixed;
     margin: 5px;
     text-shadow: 0px 0px 5px var(--ac);
+}
+.settingsSeperator {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid var(--ac);
+    border-image: radial-gradient(var(--ac) 60%, #00000000) 1;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+
+}
+.settingsButton {
+    background-color: transparent;
+    color: white;
+    border: 0;
+    transition: 0.2s;
+    padding: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px
+}
+.settingsButton:hover {
+    background-color: var(--bg);
+}
+#bottomBar_page_settings {
+    overflow:overlay;
+    height: 13vh;
+
 }
