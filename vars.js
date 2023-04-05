@@ -231,7 +231,7 @@ game = { // all variables that are not saved
                 "name": "Willow trees",
                 "icon": "axe.png",
                 "button_text": "chop",
-                "level": 15,
+                "level": 20,
                 "button_function": function() {nodeSwitch('woodcutting', 'willow_trees')}
             },
 
