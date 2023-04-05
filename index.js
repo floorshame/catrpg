@@ -364,8 +364,8 @@ function saveGame() {
 function loadGame() {
     let cookiedata = JSON.parse(localStorage.getItem("cookiedata"));
         //if (typeof gamedata.currentWeather !== "undefined") gameTDM.currentweather = gamedata.currentWeather;    
-    
     if (localStorage.getItem("cookiedata") != null) {
+        console.log(cookiedata)
         if (typeof cookiedata["inventory"] == "undefined") { cookiedata["inventory"] = save["inventory"]; console.log("Data missing default setting") } // debug 
         if (typeof cookiedata["skills"] == "undefined") {cookiedata["skills"] = save["skills"]; console.log("Data missing default setting") } // debug 
         if (typeof cookiedata["money"] == "undefined") {cookiedata["money"] = save["money"]; console.log("Data missing default setting") } // debug 
@@ -399,9 +399,10 @@ function loadGame() {
                 }
             }
         }
+        document.getElementById("versionText").innerHTML = game["version"]
+        save = cookiedata
+    
     }
-    document.getElementById("versionText").innerHTML = game["version"]
-    save = cookiedata
 }
 
 document.addEventListener("keydown", function(e) {
@@ -439,7 +440,6 @@ window.setInterval(function() { // stack overflow gaming
     var elem = document.getElementById('console_holder');
     elem.scrollTop = elem.scrollHeight;
 }, 1);
-saveGame()
 loadGame()
 update("all")
 consoleLog("welcome to catrpg")
