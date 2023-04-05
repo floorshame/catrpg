@@ -364,40 +364,42 @@ function saveGame() {
 function loadGame() {
     let cookiedata = JSON.parse(localStorage.getItem("cookiedata"));
         //if (typeof gamedata.currentWeather !== "undefined") gameTDM.currentweather = gamedata.currentWeather;    
-    if (typeof cookiedata["inventory"] == "undefined") { cookiedata["inventory"] = save["inventory"]; console.log("Data missing default setting") } // debug 
-    if (typeof cookiedata["skills"] == "undefined") {cookiedata["skills"] = save["skills"]; console.log("Data missing default setting") } // debug 
-    if (typeof cookiedata["money"] == "undefined") {cookiedata["money"] = save["money"]; console.log("Data missing default setting") } // debug 
+    
+    if (localStorage.getItem("cookiedata") != null) {
+        if (typeof cookiedata["inventory"] == "undefined") { cookiedata["inventory"] = save["inventory"]; console.log("Data missing default setting") } // debug 
+        if (typeof cookiedata["skills"] == "undefined") {cookiedata["skills"] = save["skills"]; console.log("Data missing default setting") } // debug 
+        if (typeof cookiedata["money"] == "undefined") {cookiedata["money"] = save["money"]; console.log("Data missing default setting") } // debug 
 
-        
-    if (typeof cookiedata["inventory"] != "undefined") {
-        for (let i = 0; i < Object.getOwnPropertyNames(save["inventory"]).length; i++) {
-            if (cookiedata["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]] == undefined) {
-                console.log("Data missing default setting") // debug
-                cookiedata["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]] = save["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]]
-            }
-        }
-    }
-
-    if (typeof cookiedata["skills"] != "undefined") {
-        for (let i = 0; i < Object.getOwnPropertyNames(save["skills"]).length; i++) {
-            if (cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]] == undefined) {
-                console.log("Data missing default setting") // debug
-                cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]] = save["skills"][Object.getOwnPropertyNames(save["skills"])[i]]
-            }
-        }
-    }
-
-    if (typeof cookiedata["skills"] != "undefined") {
-        for (let i = 0; i < Object.getOwnPropertyNames(save["skills"]).length; i++) {
-            for (let x = 0; x < Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]]).length; x++) {
-                if (cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]][Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]])[x]] == undefined) {
+            
+        if (typeof cookiedata["inventory"] != "undefined") {
+            for (let i = 0; i < Object.getOwnPropertyNames(save["inventory"]).length; i++) {
+                if (cookiedata["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]] == undefined) {
                     console.log("Data missing default setting") // debug
-                    cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]][Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]])[x]] = save["skills"][Object.getOwnPropertyNames(save["skills"])[i]][Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]])[x]]
+                    cookiedata["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]] = save["inventory"][Object.getOwnPropertyNames(save["inventory"])[i]]
+                }
+            }
+        }
+
+        if (typeof cookiedata["skills"] != "undefined") {
+            for (let i = 0; i < Object.getOwnPropertyNames(save["skills"]).length; i++) {
+                if (cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]] == undefined) {
+                    console.log("Data missing default setting") // debug
+                    cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]] = save["skills"][Object.getOwnPropertyNames(save["skills"])[i]]
+                }
+            }
+        }
+
+        if (typeof cookiedata["skills"] != "undefined") {
+            for (let i = 0; i < Object.getOwnPropertyNames(save["skills"]).length; i++) {
+                for (let x = 0; x < Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]]).length; x++) {
+                    if (cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]][Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]])[x]] == undefined) {
+                        console.log("Data missing default setting") // debug
+                        cookiedata["skills"][Object.getOwnPropertyNames(save["skills"])[i]][Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]])[x]] = save["skills"][Object.getOwnPropertyNames(save["skills"])[i]][Object.getOwnPropertyNames(save["skills"][Object.getOwnPropertyNames(save["skills"])[i]])[x]]
+                    }
                 }
             }
         }
     }
-
     document.getElementById("versionText").innerHTML = game["version"]
     save = cookiedata
 }
@@ -437,7 +439,7 @@ window.setInterval(function() { // stack overflow gaming
     var elem = document.getElementById('console_holder');
     elem.scrollTop = elem.scrollHeight;
 }, 1);
-  
+saveGame()
 loadGame()
 update("all")
 consoleLog("welcome to catrpg")

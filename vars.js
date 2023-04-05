@@ -40,7 +40,7 @@ save = { // all these variables get saved
 }
 
 game = { // all variables that are not saved
-    "version": "build 1",
+    "version": "build 1.1",
     
     "xp_offset": 140,
     "active_inventory": null,
