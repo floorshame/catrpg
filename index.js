@@ -72,6 +72,26 @@ function startNode() {
                 stopNode()
             }
         }
+        if (game["active_skill"] == "firemaking") { // firemaking
+            if (checkResources(game["active_skill"], game["active_node"]) == true) {
+                for (let i = 0; i < Object.getOwnPropertyNames(game["nodes"][game["active_skill"]][game["active_node"]]["items_needed"]).length; i++) {
+                    let itemName = Object.getOwnPropertyNames(game["nodes"][game["active_skill"]][game["active_node"]]["items_needed"])[i]
+                    let itemAmmount = game["nodes"][game["active_skill"]][game["active_node"]]["items_needed"][itemName]
+                    save["inventory"][itemName] -= itemAmmount
+                }
+                let xp = ran(game["nodes"][game["active_skill"]][game["active_node"]]["xp_min"], game["nodes"][game["active_skill"]][game["active_node"]]["xp_max"])
+                save["skills"][game["active_skill"]]["xp"] += xp
+    
+                consoleLog(`+${xp} xp`)
+    
+            } else {
+                game["active_skill"] = null
+                game["active_node"] = null
+                consoleLog("not enough resources")
+                stopNode()
+            }
+
+        }
         update("skills")
         update("xp")
         update("inventory")
@@ -221,6 +241,74 @@ function nodeSetup(style, skill) {
         }    
         
     }
+    if (style == 3) { // for firemaking !ONLY!
+        let node_holder = document.querySelector(`#${skill}Node_holder`)
+        $(`#${skill}Node_holder`).empty()
+        nodeSetupInfo(skill)
+
+        let node_halfBox = document.createElement("div")
+        let node_halfBoxTop = document.createElement("div")
+        let node_halfBoxBottom = document.createElement("div")
+        let node_halfBoxSpan = document.createElement("span")
+        let node_halfBoxIcon = document.createElement("img")
+        let node_halfBoxDropdown = document.createElement("select")
+        let node_halfBoxButton = document.createElement("button")
+
+
+        node_halfBox.className = "halfBox"
+
+        node_halfBoxTop.className = "halfBox_top"
+
+        node_halfBoxBottom.className = "halfBox_bottom"
+
+        node_halfBoxSpan.innerHTML = "Firemaking"
+        
+        node_halfBoxIcon.src = `assets/fire.png`
+        node_halfBoxIcon.className = "skillIcon_1"
+
+        node_halfBoxDropdown.id = "firemaking_dropDown"
+        node_halfBoxDropdown.className = "skillDropdown_1"
+        node_halfBoxDropdown.onclick = function() { // this is needed to prevent the selected item from changing when updating this *1/2
+            game["skills"]["firemaking"]["selectedNode"] = document.getElementById('firemaking_dropDown').value
+        }
+
+        node_halfBoxButton.innerHTML = "Burn"
+
+        if (game["active_skill"] == "firemaking") {
+            node_halfBoxButton.className = "skillButton_1 skillButton_1Active"
+        } else {
+            node_halfBoxButton.className = "skillButton_1"
+        }
+
+        node_halfBoxButton.onclick = function() {nodeSwitch('firemaking', document.getElementById('firemaking_dropDown').value)}
+
+        node_halfBoxTop.appendChild(node_halfBoxIcon)
+        node_halfBoxTop.appendChild(node_halfBoxSpan)
+
+        node_halfBoxBottom.appendChild(node_halfBoxDropdown)
+
+        node_halfBoxBottom.appendChild(node_halfBoxButton)
+
+        node_halfBox.appendChild(node_halfBoxTop)
+        node_halfBox.appendChild(node_halfBoxBottom)
+        
+        node_holder.appendChild(node_halfBox)
+
+        $("#firemaking_dropDown").empty() // this is for the dropdown nodes
+        for (let i = 0; i < Object.getOwnPropertyNames(game["nodes"][skill]).length; i++) { // this is for the dropdown nodes
+            if (save["skills"][skill]["level"] >= game["nodes"][skill][Object.getOwnPropertyNames(game["nodes"][skill])[i]]["level"]) { // if we have enough level to use this node
+                let firemaking_dropDown =document.querySelector("#firemaking_dropDown") 
+
+                let dropDown_option = document.createElement("option")
+
+                dropDown_option.value = Object.getOwnPropertyNames(game["nodes"][skill])[i]
+
+                dropDown_option.innerHTML = game["nodes"][skill][Object.getOwnPropertyNames(game["nodes"][skill])[i]]["name"]
+                firemaking_dropDown.appendChild(dropDown_option)
+            }
+        }
+        document.getElementById('firemaking_dropDown').value = game["skills"]["firemaking"]["selectedNode"] // this is needed to prevent the selected item from changing when updating this *2/2
+    }
 
 }
 
@@ -274,7 +362,7 @@ function update(updaie) {
             sideBar_button.appendChild(sideBar_text)
 
             if (Object.getOwnPropertyNames(game["skills"]).includes(Object.getOwnPropertyNames(game["side_tabs"])[i])) { // checks if the tab name is a skill
-                sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i] + " " + save["skills"][Object.getOwnPropertyNames(game["side_tabs"])[i]]["level"] + "/99"
+                sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i] + " " + save["skills"][Object.getOwnPropertyNames(game["side_tabs"])[i]]["level"] + "/20"
                 sideBar_Skilltabs.appendChild(sideBar_button)
             } else {
                 sideBar_text.innerHTML = Object.getOwnPropertyNames(game["side_tabs"])[i]
@@ -297,6 +385,9 @@ function update(updaie) {
             if (Object.getOwnPropertyNames(game["skills"])[i] == "woodcutting") {
                 nodeSetup(1, "woodcutting")
             }
+            if (Object.getOwnPropertyNames(game["skills"])[i] == "firemaking") {
+                nodeSetup(3, "firemaking")
+            }
 
         }
     }
@@ -304,11 +395,13 @@ function update(updaie) {
         for (let i = 0; i < Object.getOwnPropertyNames(game["skills"]).length; i++) {
             let skillName = Object.getOwnPropertyNames(game["skills"])[i]
             if (save["skills"][skillName]["xp"] >= save["skills"][skillName]["level"] * game["xp_offset"]) {
-                save["skills"][skillName]["xp"] -= save["skills"][skillName]["level"] * game["xp_offset"]
-                save["skills"][skillName]["level"] += 1
-                console.log(`A level has been added to ${skillName} `) // debug 
-                update("tabs")
-                update("xp")
+                if (save["skills"][skillName]["level"] < 20) { // checks our max level
+                    save["skills"][skillName]["xp"] -= save["skills"][skillName]["level"] * game["xp_offset"]
+                    save["skills"][skillName]["level"] += 1
+                    console.log(`A level has been added to ${skillName} `) // debug 
+                    update("tabs")
+                    update("xp")    
+                }
             }
         }
     }

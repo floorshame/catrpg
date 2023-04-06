@@ -33,6 +33,10 @@ save = { // all these variables get saved
         "woodcutting": {
             "level": 1,
             "xp": 1
+        },
+        "firemaking": {
+            "level": 1,
+            "xp": 1
         }
 
     },
@@ -43,30 +47,33 @@ save = { // all these variables get saved
 }
 
 game = { // all variables that are not saved
-    "version": "build 1.3",
+    "version": "build 1.4",
     
-    "xp_offset": 140,
-    "active_inventory": null,
-    "active_skill": null,
-    "active_node": null,
+    "xp_offset": 140, // xp to level offset
+    "active_inventory": null, // what item is selected in the inventory
+    "active_skill": null, // when pushing a node buttton this is the selected skill
+    "active_node": null, // when pushing a node buttton this is the selected node
 
-    "bottom_tabs": {
+    "bottom_tabs": { // tabs at the bottom of the screen
         "console": true,
         "settings": false
     },
-    "side_tabs": {
+    "side_tabs": { // tabs at the side of the screen
         "home": true,
         "inventory": false,
         "mining": false,
         "smithing": false,
         "woodcutting": false,
+        "firemaking": false,
+
     },
-    "side_icons": {
+    "side_icons": { // the icons for the tabs at the side of the screen
         "home": "home.png",
         "inventory": "backpack.png",
         "mining": "mining.png",
         "smithing": "bar.png",
-        "woodcutting": "axe.png"
+        "woodcutting": "axe.png",
+        "firemaking": "fire.png"
 
     },
 
@@ -79,6 +86,9 @@ game = { // all variables that are not saved
         },
         "woodcutting": {
 
+        },
+        "firemaking": {
+            "selectedNode": "oak_wood"
         }
 
     },
@@ -219,7 +229,7 @@ game = { // all variables that are not saved
             },
             "spruce_trees": {
                 "item": "spruce_wood",
-                "xp_min": 10,
+                "xp_min": 13,
                 "xp_max": 15,
                 "name": "Spruce trees",
                 "icon": "axe.png",
@@ -239,6 +249,49 @@ game = { // all variables that are not saved
             },
 
 
+
+        },
+        "firemaking": {
+            "oak_wood": {
+                "xp_min": 3,
+                "xp_max": 5,
+                "level": 1,
+                "name": "Oak Wood",
+                "items_needed": { // only crafting nodes need this
+                    "oak_wood": 1,
+                },
+
+            },
+            "birch_wood": {
+                "xp_min": 10,
+                "xp_max": 15,
+                "level": 5,
+                "name": "Birch Wood",
+                "items_needed": { // only crafting nodes need this
+                    "birch_wood": 1,
+                },
+
+            },
+            "spruce_wood": {
+                "xp_min": 13,
+                "xp_max": 15,
+                "level": 15,
+                "name": "Spruce Wood",
+                "items_needed": { // only crafting nodes need this
+                    "spruce_wood": 1,
+                },
+
+            },
+            "willow_wood": {
+                "xp_min": 15,
+                "xp_max": 18,
+                "level": 20,
+                "name": "Willow Wood",
+                "items_needed": { // only crafting nodes need this
+                    "willow_wood": 1,
+                },
+
+            },
 
         }
     },
@@ -306,7 +359,7 @@ game = { // all variables that are not saved
 
     },
 
-    "motd": [
+    "motd": [ // message of the day
         "guess who's back in town",
         "click, wait, repeat",
         "two trucks moment",
