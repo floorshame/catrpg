@@ -47,7 +47,7 @@ save = { // all these variables get saved
 }
 
 game = { // all variables that are not saved
-    "version": "build 1.5",
+    "version": "build 1.6",
     
     "xp_offset": 140, // xp to level offset
     "active_inventory": null, // what item is selected in the inventory
