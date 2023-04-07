@@ -408,25 +408,33 @@ function update(updaie) {
     if (updaie == "all" || updaie == "inventory") {
         document.getElementById("moneyHolder").innerHTML = save["money"]
         $("#inventoryHolder").empty()
-        for (let i = 0; i < Object.getOwnPropertyNames(save["inventory"]).length; i++) {
-            let invName = Object.getOwnPropertyNames(save["inventory"])[i]
-            let invOwned = save["inventory"][invName]
-            let displayName = game["items"][invName]["name"]
-            if (invOwned > 0) {
-                let invHolder = document.querySelector("#inventoryHolder")
+        console.log(document.getElementById("inventorySearch").value) // debug
+            for (let i = 0; i < Object.getOwnPropertyNames(save["inventory"]).length; i++) {
+                let invName = Object.getOwnPropertyNames(save["inventory"])[i]
+                let invOwned = save["inventory"][invName]
+                let displayName = game["items"][invName]["name"]
+                if (invOwned > 0) {
+                    let invHolder = document.querySelector("#inventoryHolder")
+    
+                    let invItem = document.createElement("div")
+                    if (game["active_inventory"] == invName) {
+                        invItem.style = "border-left: 1px solid white;"
+                    }
+                    invItem.innerHTML = `${displayName}: ${invOwned}`
+                    invItem.id = `invItem_${invName}`
+                    invItem.onclick = function() {invClick(invName)}
+                    invItem.className = "inventoryItem"
+                    if (document.getElementById("inventorySearch").value == "") { // checks if we've searched anything
+                        invHolder.appendChild(invItem)
 
-                let invItem = document.createElement("div")
-                if (game["active_inventory"] == invName) {
-                    invItem.style = "border-left: 1px solid white;"
+                    } else if (displayName.toLowerCase().includes(document.getElementById("inventorySearch").value.toLowerCase())) { // checks all items if the search is contained in it
+                        invHolder.appendChild(invItem)
+
+                    }
                 }
-                invItem.innerHTML = `${displayName}: ${invOwned}`
-                invItem.id = `invItem_${invName}`
-                invItem.onclick = function() {invClick(invName)}
-                invItem.className = "inventoryItem"
-                invHolder.appendChild(invItem)
             }
 
-        }
+        
     }
     if (updaie == "all" || updaie == "motd") {
         let motd = ran(0, game["motd"].length - 1)
@@ -519,7 +527,9 @@ function loadGame() {
         }
         document.getElementById("versionText").innerHTML = game["version"]
         save = cookiedata
-    
+        setTimeout(() => { // sometimes visual glitches happen just to be safe have it for an extra second!
+            document.getElementById("loadingScreen").style.display = "none"; // hides the loading screen
+        }, 1000);
     }
 }
 
@@ -529,7 +539,7 @@ document.addEventListener("keydown", function(e) {
         saveGame()
         consoleLog("game has been saved")
     }
- }, false);
+}, false);
 
 
 function sellButton() {

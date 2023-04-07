@@ -21,6 +21,10 @@
     </div>-->    
 
 
+    <div class="loadingScreen" id="loadingScreen">
+        <div class="lds-ripple"><div></div><div></div></div>
+    </div>
+
     <div class="sideBar">
         <div class="sideBar_top">
             <span style="color: var(--ac)">c</span>atRPG
@@ -74,6 +78,12 @@
                     <img src="assets/home.png" class="skillIcon_1" > welcome
                 </div>
                 <div class="halfBox_bottom">
+                    <p class="homeTime">Last update was: <time datetime="2023-04-07" style="color: var(--ac)">2023-04-07</time></p>
+                    <center>
+                        <a href="catrpg.xyz/discord"><img src="assets/discord.png" class="homeIcons" title="discord"></a>
+                        <a href="catrpg.xyz/discord"><img src="assets/wiki.png" class="homeIcons" title="wiki"></a>
+
+                    </center>
                 </div>
             </div>
         </section>
@@ -84,6 +94,7 @@
                     <img src="assets/backpack.png" class="skillIcon_1"> inventory <button onclick="sellButton()" class="inventoryButton">sell</button>
                 </div>
                 <div class="eightyBox_bottom">
+                    <input type="text" id="inventorySearch" class="inventorySearch" placeholder="search" onkeyup="update('inventory')">
                     <div class="inventoryHolder" id="inventoryHolder">
                         <div class="inventoryItem">Coal: 4</div>
                     </div>
