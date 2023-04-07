@@ -438,7 +438,7 @@ function update(updaie) {
     }
     if (updaie == "all" || updaie == "motd") {
         let motd = ran(0, game["motd"].length - 1)
-        console.log(motd)
+        console.log(game["motd"][motd]) // debug
         document.getElementById("motd").innerHTML = game["motd"][motd]
         let root = document.querySelector(':root');
         root.style.setProperty(`--ac`, save["profile"]["color"]);
@@ -460,6 +460,21 @@ function consoleLog(message) {
 
 }
 
+function download(filename, text) { // stack overflow winning!!!!
+}
+  
+function exportGame() {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(JSON.parse(localStorage.getItem("cookiedata")))));
+    element.setAttribute('download', "save.txt");
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+}
 
 function tabSwitch(bar, tabName) {
     for (let i = 0; i < Object.getOwnPropertyNames(game[bar]).length; i++) {
@@ -471,7 +486,7 @@ function tabSwitch(bar, tabName) {
 
 function saveGame() {
     localStorage.setItem("cookiedata", JSON.stringify(save));
-    consoleLog("Data has been saved") // debug 
+    consoleLog("game has been saved")
 }
 function resetGame() {
     localStorage.setItem("cookiedata", JSON.stringify({}));
@@ -527,17 +542,17 @@ function loadGame() {
         }
         document.getElementById("versionText").innerHTML = game["version"]
         save = cookiedata
-        setTimeout(() => { // sometimes visual glitches happen just to be safe have it for an extra second!
-            document.getElementById("loadingScreen").style.display = "none"; // hides the loading screen
-        }, 1000);
     }
+    setTimeout(() => { // sometimes visual glitches happen just to be safe have it for an extra second!
+        document.getElementById("loadingScreen").style.display = "none"; // hides the loading screen
+    }, 1000);
+
 }
 
 document.addEventListener("keydown", function(e) {
     if (e.ctrlKey && e.which == 83) {
         e.preventDefault();
         saveGame()
-        consoleLog("game has been saved")
     }
 }, false);
 

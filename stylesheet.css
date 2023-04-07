@@ -252,12 +252,14 @@ html {
     color: white;
     border: 0px;
     margin: 5px;
+    margin-top: 15px;
+
     margin-bottom: 15px;
     font-size: 17px;
     
 }
 .inventorySearch::placeholder {
-    
+
 }
 .inventorySearch:focus {
     outline: none;
